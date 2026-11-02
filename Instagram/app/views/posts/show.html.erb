@@ -1,2 +1,14 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+  <h2>Publicación</h2>
+
+  <h4><%= @post.user.email %></h4>
+
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image,
+                  style: "max-width: 500px;" %>
+  <% end %>
+
+  <p><%= @post.description %></p>
+
+  <%= link_to "Volver al inicio", root_path %>
+</div>

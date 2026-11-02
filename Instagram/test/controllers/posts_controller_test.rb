@@ -1,18 +1,26 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   test "should get index" do
-    get posts_index_url
+    get root_url
     assert_response :success
+    assert_select "h1", "Instagram"
   end
 
   test "should get new" do
-    get posts_new_url
+    sign_in users(:one)
+
+    get new_post_url
     assert_response :success
+    assert_select "textarea[name=?]", "post[description]"
+    assert_select "input[type=file][name=?]", "post[image]"
   end
 
   test "should get show" do
-    get posts_show_url
+    get post_url(posts(:one))
     assert_response :success
+    assert_select "h2", "Publicación"
   end
 end

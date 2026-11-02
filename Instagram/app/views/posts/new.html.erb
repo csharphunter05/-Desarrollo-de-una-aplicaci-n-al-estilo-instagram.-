@@ -1,2 +1,30 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="container">
+  <h1>Nueva publicación</h1>
+
+  <%= form_with model: @post do |form| %>
+    <% if @post.errors.any? %>
+      <div>
+        <h2>No se pudo guardar la publicación:</h2>
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :description, "Descripción" %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div>
+      <%= form.label :image, "Imagen" %>
+      <%= form.file_field :image %>
+    </div>
+
+    <%= form.submit "Publicar" %>
+  <% end %>
+
+  <p><%= link_to "Volver al inicio", root_path %></p>
+</div>
