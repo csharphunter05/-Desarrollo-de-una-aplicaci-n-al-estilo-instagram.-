@@ -8,3 +8,176 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+:root {
+  color-scheme: light;
+  --instagram-background: #fafafa;
+  --instagram-border: #dbdbdb;
+  --instagram-muted: #737373;
+  --instagram-primary: #0095f6;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--instagram-background);
+  color: #262626;
+}
+
+a {
+  color: var(--instagram-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1877c9;
+}
+
+.app-navbar {
+  max-width: 975px;
+  min-height: 60px;
+}
+
+.instagram-wordmark {
+  color: #262626;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.instagram-wordmark:hover {
+  color: #262626;
+}
+
+.flash-container {
+  max-width: 680px;
+  padding-top: 1rem;
+}
+
+.feed-container {
+  max-width: 680px;
+}
+
+.feed-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-card,
+.auth-card,
+.form-card {
+  overflow: hidden;
+  border: 1px solid var(--instagram-border);
+  border-radius: 0.6rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
+}
+
+.post-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+}
+
+.post-user-details {
+  min-width: 0;
+}
+
+.post-avatar {
+  display: inline-flex;
+  flex: 0 0 2.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf);
+  color: #fff;
+  font-weight: 700;
+}
+
+.post-image {
+  display: block;
+  width: 100%;
+  max-height: 680px;
+  background: #f2f2f2;
+  object-fit: contain;
+}
+
+.post-copy {
+  overflow-wrap: anywhere;
+}
+
+.empty-feed {
+  padding: 3rem 1.5rem;
+  border: 1px dashed var(--instagram-border);
+  border-radius: 0.6rem;
+  background: #fff;
+  text-align: center;
+}
+
+.form-page,
+.auth-page {
+  max-width: 620px;
+}
+
+.auth-page {
+  max-width: 440px;
+}
+
+.auth-card {
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.auth-wordmark {
+  margin-bottom: 1.25rem;
+  color: #262626;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  color: var(--instagram-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  height: 1px;
+  flex: 1;
+  background: var(--instagram-border);
+  content: "";
+}
+
+.form-control,
+.form-select {
+  border-color: var(--instagram-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #a8c7fa;
+  box-shadow: 0 0 0 0.2rem rgb(0 149 246 / 12%);
+}
+
+@media (max-width: 575.98px) {
+  .feed-heading {
+    align-items: flex-start;
+  }
+
+  .feed-heading .btn {
+    white-space: nowrap;
+  }
+}

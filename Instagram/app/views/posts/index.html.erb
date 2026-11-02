@@ -1,24 +1,40 @@
-<div class="container">
-  <h1>Instagram</h1>
+<div class="container feed-container py-4">
+  <div class="feed-heading">
+    <div>
+      <h1 class="h3 mb-1">Tu feed</h1>
+      <p class="text-secondary mb-0">Momentos compartidos por la comunidad</p>
+    </div>
+    <%= link_to "Nueva publicación", new_post_path, class: "btn btn-primary" %>
+  </div>
 
-  <%= link_to "Nueva publicación", new_post_path %>
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <article class="card post-card mb-4">
+        <div class="post-card-header">
+          <span class="post-avatar" aria-hidden="true">
+            <%= post.user.email.first.upcase %>
+          </span>
+          <div class="post-user-details">
+            <h2 class="h6 mb-0 text-truncate"><%= post.user.email %></h2>
+            <small class="text-secondary"><%= time_ago_in_words(post.created_at) %></small>
+          </div>
+        </div>
 
-  <hr>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, class: "post-image", alt: "Imagen publicada por #{post.user.email}" %>
+        <% end %>
 
-  <% @posts.each do |post| %>
-    <div class="post">
-      <h4><%= post.user.email %></h4>
-
-      <% if post.image.attached? %>
-        <%= image_tag post.image,
-                      style: "max-width: 400px;" %>
-      <% end %>
-
-      <p><%= post.description %></p>
-
-      <%= link_to "Ver publicación", post_path(post) %>
-
-      <hr>
+        <div class="card-body">
+          <p class="post-copy mb-3"><%= post.description %></p>
+          <%= link_to "Ver publicación", post_path(post), class: "btn btn-outline-secondary btn-sm" %>
+        </div>
+      </article>
+    <% end %>
+  <% else %>
+    <div class="empty-feed">
+      <h2 class="h5">Todavía no hay publicaciones</h2>
+      <p class="text-secondary">Comparte tu primera foto para iniciar el feed.</p>
+      <%= link_to "Crear publicación", new_post_path, class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

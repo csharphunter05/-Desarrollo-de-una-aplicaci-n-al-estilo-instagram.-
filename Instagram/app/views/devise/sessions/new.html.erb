@@ -1,0 +1,40 @@
+<div class="container auth-page py-5">
+  <section class="auth-card">
+    <div class="auth-wordmark">Instagram</div>
+    <h1 class="h5 text-center mb-4">Inicia sesión para continuar</h1>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+      <div class="mb-3">
+        <%= form.label :email, "Correo electrónico", class: "form-label" %>
+        <%= form.email_field :email, autofocus: true, autocomplete: "email",
+                             class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, "Contraseña", class: "form-label" %>
+        <%= form.password_field :password, autocomplete: "current-password",
+                                class: "form-control", required: true %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-check mb-3">
+          <%= form.check_box :remember_me, class: "form-check-input" %>
+          <%= form.label :remember_me, "Mantener sesión iniciada", class: "form-check-label" %>
+        </div>
+      <% end %>
+
+      <%= form.submit "Iniciar sesión", class: "btn btn-primary w-100" %>
+    <% end %>
+
+    <% if devise_mapping.recoverable? %>
+      <p class="text-center mt-3 mb-0">
+        <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name) %>
+      </p>
+    <% end %>
+  </section>
+
+  <div class="auth-card mt-3 py-3 text-center">
+    ¿No tienes una cuenta?
+    <%= link_to "Regístrate", new_registration_path(resource_name), class: "fw-semibold" %>
+  </div>
+</div>

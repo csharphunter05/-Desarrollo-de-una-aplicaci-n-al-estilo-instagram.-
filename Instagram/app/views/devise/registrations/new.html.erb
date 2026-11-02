@@ -1,0 +1,47 @@
+<div class="container auth-page py-5">
+  <section class="auth-card">
+    <div class="auth-wordmark">Instagram</div>
+    <h1 class="h5 text-center mb-2">Regístrate para ver fotos y compartir momentos</h1>
+    <p class="text-secondary text-center mb-4">Crea una cuenta gratis.</p>
+
+    <% if resource.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+      <div class="mb-3">
+        <%= form.label :email, "Correo electrónico", class: "form-label" %>
+        <%= form.email_field :email, autofocus: true, autocomplete: "email",
+                             class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, "Contraseña", class: "form-label" %>
+        <%= form.password_field :password, autocomplete: "new-password",
+                                class: "form-control", required: true %>
+        <% if @minimum_password_length %>
+          <div class="form-text">Mínimo <%= @minimum_password_length %> caracteres.</div>
+        <% end %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :password_confirmation, "Confirmar contraseña", class: "form-label" %>
+        <%= form.password_field :password_confirmation, autocomplete: "new-password",
+                                class: "form-control", required: true %>
+      </div>
+
+      <%= form.submit "Crear cuenta", class: "btn btn-primary w-100" %>
+    <% end %>
+  </section>
+
+  <div class="auth-card mt-3 py-3 text-center">
+    ¿Ya tienes una cuenta?
+    <%= link_to "Inicia sesión", new_session_path(resource_name), class: "fw-semibold" %>
+  </div>
+</div>
